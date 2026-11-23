@@ -1,0 +1,31 @@
+RED FLAG INTELLIGENCE — PREMIUM INSTITUTIONAL REDESIGN
+
+DESIGN
+- Direction A: Premium Institutional Light as the default.
+- Optional graphite + emerald dark appearance toggle in the sidebar.
+- Moderate, restrained transitions and hover feedback.
+- Reduced-motion accessibility is respected.
+- Shared visual system is injected globally so routed research pages use the same typography, cards, tables, tabs, controls and spacing.
+
+PRESERVATION
+This package is based on the latest project archive available in the conversation and overlays the latest stability, Corporate & Regulatory Intelligence, primary-source verdict and search/tabs patches before applying the visual redesign. Existing data modules, financial models, research pages, ticker session state and source retrieval code are retained.
+
+INSTALL
+1. Stop the current Streamlit process (Ctrl+C).
+2. Back up the existing project folder.
+3. Extract this ZIP to a new folder first, or merge its RedFlag_Intelligence folder into your project root.
+4. Keep your existing .venv and any local .streamlit/secrets.toml file. Do not overwrite secrets with the example file.
+5. Install/update dependencies only if needed: .venv\Scripts\python.exe -m pip install -r requirements.txt
+6. Start using the existing project launcher, or:
+   .venv\Scripts\python.exe -m streamlit run app.py
+
+THEME
+- Light mode is default.
+- Use the sidebar “Dark appearance” toggle for graphite + emerald dark mode.
+- The toggle state is held in Streamlit session state for the active browser session.
+
+VALIDATION
+- Python compileall passed.
+- Existing project tests: 30 passed, 10 subtests passed.
+- ZIP integrity checked.
+- A live Streamlit browser smoke test could not be run in the build environment because Streamlit is not installed there. Validate first launch on the Windows project environment.

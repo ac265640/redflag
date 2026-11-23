@@ -1,0 +1,49 @@
+RED FLAG INTELLIGENCE - CONSOLIDATED STABILITY PATCH
+
+This patch consolidates the current Welcome/search, market snapshot, data-fetch reliability,
+annual-report/management intelligence merge, and Streamlit compatibility updates.
+
+INSTALL
+1. Stop Streamlit with Ctrl+C in the terminal.
+2. Make a backup copy of your current project folder.
+3. Extract this ZIP into the EXISTING project root (the folder containing app.py).
+4. Choose Merge/Replace when Windows asks. Do not delete or replace your .venv, data/cache,
+   uploads, user files, or other local project data.
+5. Double-click WINDOWS_RUN_DASHBOARD.bat to start the application. It checks the project's
+   .venv and uses that Python environment rather than Anaconda/global Python. If the project
+   environment is missing or incomplete, it calls SETUP_AND_RUN.bat to create/repair it.
+
+WHAT THIS PATCH CHANGES
+- One company search input on Welcome; multiple candidate matches appear as buttons, not a
+  second company selector.
+- Market snapshot, charts, headlines and institutional/sector panels are rendered
+  automatically without requiring a toggle; independent source calls have bounded waits.
+- Exchange directory first-load is parallel/cached; company ticker can still be entered
+  directly when the directory provider is unavailable.
+- Company overview avoids slow optional Yahoo profile calls and reuses cached financial data.
+- Governance, ESG, credit-rating, market and other source jobs run concurrently with bounded
+  waits; one provider timeout should not block unrelated modules.
+- Browser/Selenium fallbacks are user-triggered rather than launched on every normal page load.
+- Annual Report & Management Intelligence is the merged workspace; findings can be linked to
+  Forensic Red Flags without automatically double-counting the same finding.
+- BSE annual-report fallback tries direct BSE scrip lookup even when the full scrip directory
+  cannot be loaded, and recognizes the current PDFDownload response field.
+- Older Streamlit width='stretch' arguments have been removed from the patched files.
+
+VALIDATION RUN IN THE BUILD ENVIRONMENT
+- Python compileall: passed.
+- Automated tests: 20 passed, 10 subtests passed.
+- No remaining width='stretch' arguments in patched Python files.
+- BSE fallback unit tests use mocked responses. They do not prove live BSE/NSE/Yahoo endpoints
+  are reachable from your Windows/network environment.
+
+IMPORTANT LIMITATION
+Exchange, Yahoo Finance, rating-agency and news providers can throttle, time out, change
+endpoints, or not publish a particular document. The app now isolates those failures and
+reports unavailable evidence instead of inventing values, but no code can guarantee that
+all external sources will return data or that every first-time fetch will complete in seconds.
+
+After starting, test one company from Welcome and then open Company Overview, Governance,
+ESG, Credit Rating, Annual Report & Management Intelligence, Forensic Red Flags, and Final
+Investment Summary. When a source is unavailable, use its refresh/retry control and retain
+the source diagnostic shown on the page.

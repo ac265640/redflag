@@ -1,0 +1,70 @@
+RED FLAG INTELLIGENCE — PRIMARY-SOURCE DISCLOSURE VERDICTS
+
+WHAT CHANGES
+- Replaces generic “Why this matters” advice with a primary-source investigation.
+- Downloads the selected official NSE/BSE/regulator attachment over HTTPS.
+- Extracts PDF/HTML text and preserves page numbers.
+- Produces a structured verdict, materiality assessment, source-backed facts,
+  company-impact analysis (earnings, cash flow, balance sheet, operations,
+  governance/ownership), and follow-up watch items.
+- Allows any filtered event in the Event Explorer to be selected and analysed;
+  analysis is not restricted to only the first 12 disclosures.
+- Caches extracted documents and verdicts for six hours; explicit Refresh filings
+  clears both caches.
+- If the LLM is not configured, a conservative rules-based document review runs.
+  The UI labels it clearly and does not pretend it is an AI model verdict.
+- If no source URL exists, the attachment cannot be downloaded, or the PDF is a
+  scanned image with no extractable text, the app shows “no verdict” rather than
+  guessing from the announcement headline.
+
+FILES TO REPLACE / ADD
+1. Replace pages/12_Corporate_Regulatory_Intelligence.py
+2. Replace intelligence/corporate_regulatory.py
+3. Add intelligence/disclosure_analyzer.py
+4. Optional: use .streamlit_secrets.toml.example as a reference configuration.
+
+INSTALLATION
+1. Stop Streamlit (Ctrl+C).
+2. Back up the three target files.
+3. Extract this ZIP into the project root (the folder containing app.py).
+4. Choose Replace files when prompted; allow the new intelligence/disclosure_analyzer.py
+   file to be added.
+5. Restart with the project's WINDOWS_RUN_DASHBOARD.bat.
+
+ENABLE LLM-GENERATED VERDICTS
+The local dashboard cannot access the ChatGPT model used in this conversation.
+To enable model-generated natural-language verdicts, configure an OpenAI-compatible
+Chat Completions endpoint:
+
+1. Create or open .streamlit/secrets.toml (do not share this file).
+2. Copy the [disclosure_ai] block from .streamlit/secrets.toml.example into it.
+   If secrets.toml already contains other settings, append this block; do not
+   overwrite existing settings.
+3. Set api_key, base_url and model to your provider's values.
+4. Restart Streamlit.
+
+Alternatively set these environment variables before launching:
+- REDFLAG_LLM_API_KEY
+- REDFLAG_LLM_BASE_URL
+- REDFLAG_LLM_MODEL
+
+A local Ollama-compatible /v1 endpoint is also supported without an API key when
+hosted on localhost/127.0.0.1. The provider/model must support the OpenAI-compatible
+/chat/completions API.
+
+SAFETY AND EVIDENCE RULES
+- The source document is treated as untrusted evidence, never as instructions.
+- AI-generated factual claims are displayed only when their evidence quote can be
+  matched to the extracted page text.
+- A show-cause notice is not a final penalty order.
+- A promoter disclosure or routine SEBI filing is not automatically wrongdoing.
+- Potential financial impact is distinguished from confirmed impact.
+- No buy/sell recommendation is generated.
+- No OCR is performed. Scanned PDFs return an extraction limitation, not a guess.
+- The downloader accepts HTTPS links from configured official exchange/regulator
+  domains only and imposes a 24 MB download limit.
+
+VALIDATION LIMITATION
+Offline tests and Python compilation can be run here, but live NSE/BSE attachment
+access, the user's provider API key/model, and Windows Streamlit rendering must be
+validated in the user's local environment.

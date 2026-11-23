@@ -1,0 +1,68 @@
+RED FLAG INTELLIGENCE — MERGED INTELLIGENCE + SEARCH PERFORMANCE PATCH
+
+WHAT THIS PATCH CHANGES
+1. Replaces the separate Annual Report Intelligence and Management Intelligence pages with one page:
+   Annual Report & Management Intelligence.
+2. Keeps separate workspaces inside that page:
+   - Executive Summary
+   - Annual Report Analysis
+   - Management Commentary
+   - Promise vs Actual
+   - Risk Signals
+3. Sends the same source-linked annual-report and management review findings to the Evidence tab of Forensic Red Flags.
+   Linked findings are NOT added again to the forensic score. They remain evidence for investigation until a configured forensic check validates them independently.
+4. Makes Welcome search faster:
+   - NSE and BSE company directories are fetched in parallel with short first-load timeouts.
+   - The company directory is saved locally and reused.
+   - A direct NSE ticker / BSE scrip-code entry is available if the exchange directory is unavailable.
+   - Market charts, news and institutional widgets load only when the user switches them on.
+5. Makes Company Overview faster:
+   - Company profile and annual statements are loaded concurrently.
+   - Income statement, balance sheet and cash-flow retrieval are concurrent.
+   - Last successful statement data is returned immediately from local cache on normal navigation.
+   - Refresh is explicit, and a failed refresh falls back to the last successfully retrieved cache.
+   - Slow Yahoo Ticker.info lookup is not used in the normal company-profile path.
+6. Keeps report extraction, report retrieval and source evidence cached for reuse; browser fallback is a user-triggered action.
+
+INSTALL
+1. Stop the currently running Streamlit app (Ctrl+C in its terminal).
+2. Make a backup copy of your project folder or, at minimum, the files listed below.
+3. Extract this ZIP directly into the EXISTING project root — the folder that contains app.py.
+4. Preserve the folder structure and choose Replace/Overwrite when Windows asks.
+5. Do NOT delete your .venv folder or data/cache folder. This patch does not include either of them.
+6. Start the app again from your existing project environment:
+      streamlit run app.py
+
+FIRST USE
+- Search a company by name or symbol in the company list.
+- If the full exchange list is unavailable, enter an NSE symbol (example: RELIANCE or RELIANCE.NS) or BSE scrip code (example: 500325) in the direct-entry field.
+- If the list is partial or unavailable, use “Update NSE/BSE company list” to request a longer explicit refresh.
+- On first use for a ticker with no saved financial data, Yahoo Finance still has to return the statements. Later navigation uses the local cache. Use “Refresh company source data” when you deliberately want a new provider pull.
+- Open Annual Report & Management Intelligence to retrieve/extract the annual report. The first PDF extraction can take longer; the cached report is reused afterward. Use “Browser fallback” only when normal official-source retrieval fails.
+- Open the Risk Signals workspace, then “Open Forensic Red Flags” to see the linked evidence.
+
+PATCHED FILES
+app.py
+README.md
+data/annual_report.py
+data/fetch_live.py
+data/fetch_universe.py
+data/market_intelligence.py
+intelligence/management_vs_numbers.py
+pages/0_Welcome.py
+pages/1_Home_Dashboard.py
+pages/2_Company_Overview.py
+pages/3_Forensic_Red_Flags.py
+pages/10_Annual_Report_Intelligence.py
+pages/11_Management_Intelligence.py
+pages/13_Final_Investment_Summary.py
+visualization/components.py
+
+TESTS RUN IN THE BUILD ENVIRONMENT
+- Python compilation: all project Python files compiled successfully.
+- Existing unit suite: 17 tests passed.
+- Additional offline smoke checks: NSE/BSE listing fetch runs concurrently and de-duplicates by ISIN; official PDF URL validation accepts NSE/BSE hosts and rejects look-alike external hosts; management commitments remain pending until later-period verification.
+
+LIMITATIONS
+- The build environment did not have Streamlit or yfinance installed and could not make live NSE/BSE/Yahoo requests. Therefore the app could not be launched here for a full interactive or live-network test.
+- Network availability, provider rate limits, exchange API changes and company-specific data coverage can still affect an individual live lookup. The code is designed to show an explicit unavailable/stale state rather than fabricate data.

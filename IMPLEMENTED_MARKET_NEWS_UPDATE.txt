@@ -1,0 +1,25 @@
+IMPLEMENTED UPDATE — MARKET SNAPSHOT + COMPANY NEWS
+
+Added:
+- Welcome page market cards for NIFTY 50, BANK NIFTY, SENSEX and INDIA VIX.
+- Selectable index charts (1D, 1W, 1M, 3M, 6M, 1Y) for NIFTY 50, BANK NIFTY and SENSEX.
+- Company-specific news feed in Company Overview with publisher, publication date, original source link and a preliminary keyword-based impact label.
+- Recent NSE corporate disclosures in Company Overview with source links where supplied by NSE.
+- Five-minute market-history cache and 3-minute market snapshot cache; company news cached for 15 minutes.
+- Removed the blocking full-company prefetch from Welcome so navigation starts immediately after company selection.
+
+Data integrity notes:
+- Market values are the latest values returned by Yahoo Finance and may be delayed. The UI labels them as latest available close; it does not claim an authorised real-time exchange feed.
+- No synthetic index values or news headlines are generated.
+- News impact labels are simple keyword screens, not investment recommendations or verified causal assessments.
+- If a provider is unavailable, the UI shows an unavailable state rather than fabricated data.
+
+Setup:
+1. Extract this project folder.
+2. Open a terminal in the project folder.
+3. Create/activate your Python 3.12 virtual environment if needed.
+4. Install dependencies: python -m pip install -r requirements.txt
+5. Run: python -m streamlit run app.py
+
+The ZIP intentionally excludes the bundled Windows .venv and Python bytecode caches. Keep/use your existing .venv, or recreate it using the requirements file.
+\n\nFollow-up fixes: Welcome now uses a single selectable full-width index chart and a compact top layout. Credit Rating now queries ICRA's issuer-filtered archive directly, checks CRISIL's recent rating-action archive with bounded lookback, and can show explicitly labelled undated issuer rating summaries for ICICI Bank and HDFC Bank. No dates/outlooks are invented. A Refresh rating sources button clears the two credit caches.\n

@@ -1,0 +1,10 @@
+RED FLAG INTELLIGENCE
+Institutional Premium research terminal
+
+1. Run SETUP_AND_RUN.bat once to create/configure the environment.
+2. Run run_windows.bat for normal launches.
+3. Select an NSE/BSE listed company on Welcome to open its research workspace.
+4. Review the source timestamp, reporting period and source caveats on each page.
+5. Verify material findings against the original annual report, exchange filing or rating-agency report.
+
+Missing information is reported as N/A; screening flags are prompts for review, not findings of fraud or misconduct.

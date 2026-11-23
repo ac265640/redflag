@@ -1,0 +1,37 @@
+RED FLAG INTELLIGENCE — FORENSIC PAGE UI REFRESH
+
+What changed
+- Simplified the Forensic Red Flags page into five focused tabs: Overview, Financial Flags, Sector Checks, Models, and Evidence & Methodology.
+- Reduced the first-screen summary to three primary metrics: Triggered findings, High / critical, and Tests executed.
+- Moved eligible-test coverage, unavailable counts, not-applicable counts, and the sector-screen index into a compact qualifier line; the index definition remains in Evidence & Methodology.
+- Replaced the long queue of large warning cards with a compact priority table and one short first-read explanation.
+- Kept chart detail inside an optional Financial trend context expander.
+- Financial Findings now uses compact filters, a table, and one selected investigation detail panel.
+- Sector Checks shows test status counts and concise results; unavailable sector KPIs are moved into a collapsed section.
+- Model Diagnostics uses one table and one selected model explanation instead of repeating large model cards.
+- Evidence & Methodology groups data-source details, scoring explanation, limitations, warnings and links to supporting research modules.
+- All calculations, classifications, thresholds, source connections and sector-aware test logic remain in the existing engine; this UI refresh does not add or alter financial calculations.
+
+Data interpretation
+- Triggered means a configured applicable test breached its review threshold.
+- Not triggered means the configured test ran and did not breach its threshold.
+- Unavailable means a relevant test could not run because required inputs were unavailable or invalid.
+- Not applicable means the test is unsuitable for the classified business model.
+- Eligible-test coverage is distinct from overall data availability. Not-applicable checks are excluded; unavailable relevant checks reduce coverage.
+- The sector-screen index is a severity-weighted summary of executed statement-based tests only. It is not a fraud probability or a cross-sector comparable investment score.
+
+Validation performed
+- Python compile-all passed.
+- 17 existing offline unit tests passed.
+- Project verifier passed.
+- Page execution smoke test passed for both populated findings and zero findings using a Streamlit API stub.
+- A live Streamlit browser render and live provider refresh were not available in this environment.
+
+Installation
+1. Stop Streamlit.
+2. Extract the patch ZIP into the existing project folder and overwrite pages/3_Forensic_Red_Flags.py.
+3. Keep the existing .venv and all other files unchanged.
+4. Run:
+   .venv\\Scripts\\activate
+   streamlit cache clear
+   python -m streamlit run app.py

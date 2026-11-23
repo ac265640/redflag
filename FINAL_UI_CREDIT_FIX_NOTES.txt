@@ -1,0 +1,39 @@
+RED FLAG INTELLIGENCE — UI & CREDIT-RATING FIX
+
+This update is based on Red_Flag_Intelligence_MARKET_NEWS_FIX_v2.zip.
+
+WELCOME PAGE
+- More compact top layout and tighter spacing.
+- Company search remains the first user action.
+- Indian market snapshot remains directly below the search.
+- Replaced three cramped side-by-side index charts with one larger selectable chart.
+- Index charts remain rebased to 100 so the selected period's movement is readable.
+
+CREDIT RATING
+- Added direct issuer-filtered retrieval from ICRA's official All Rating Rationales archive.
+- ICRA report pages attempt the official report PDF endpoint for text extraction.
+- CRISIL direct rating-action scan is bounded to the six newest months and stops at the newest month with a matching issuer.
+- General CRA search-engine fallback is capped and time-limited.
+- Added issuer-published rating-summary fallbacks for ICICI Bank and HDFC Bank official websites.
+- Issuer-page summary rows are explicitly labelled "Issuer summary (date not stated)". No publication date or outlook is invented.
+- Corrected rating-symbol extraction so AA+, AA-, A1+ and similar ratings keep their suffix characters.
+- Added Source Type to distinguish official CRA reports, NSE disclosures and issuer summaries.
+- Added a Refresh rating sources button to clear the dedicated rating caches.
+- Risk signal counts show N/A when no dated rating-action events were parsed; undated issuer summaries are not misrepresented as zero downgrades.
+
+VALIDATION PERFORMED
+- All Python source files compile.
+- Project verification script passes.
+- Mock tests pass for ICICI issuer-summary HTML parsing, ICRA archive-row parsing, ICRA PDF URL construction, company identity verification, rating extraction and suffix handling.
+- Mock test passes for HDFC issuer-summary table parsing.
+
+IMPORTANT LIMITATION
+This environment cannot run the complete Streamlit application against live sources because Streamlit is not installed and outbound requests from the local test container are blocked. The tests above verify parsers and code paths with controlled fixtures. Actual availability from your PC/network and third-party agency websites must be confirmed after installation. The project intentionally distinguishes undated issuer summaries from dated CRA reports and does not invent ratings or rating dates.
+
+INSTALL
+1. Back up your existing project.
+2. Extract this ZIP into your project folder (replace files when prompted).
+3. Keep your existing .venv; it is not included.
+4. Restart with: .venv\Scripts\activate
+5. Run: python -m streamlit run app.py
+6. Open Credit Rating and press "Refresh rating sources" once.

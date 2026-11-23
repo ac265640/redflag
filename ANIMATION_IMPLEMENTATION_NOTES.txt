@@ -1,0 +1,22 @@
+RED FLAG INTELLIGENCE V3 — HYBRID ANIMATION UPDATE
+
+Implemented in utils/custom_css.py only.
+
+Effects:
+- restrained page and hero entrance
+- subtle lift and cyan border glow on research/metric cards
+- button hover/press feedback
+- company search focus glow
+- sidebar navigation hover movement
+- reusable live-dot and shimmer utility classes
+- reduced-motion support via prefers-reduced-motion
+
+Performance/accessibility:
+- CSS-only; no external JS library, network request, timer, or polling loop
+- GPU-friendly transform/opacity transitions
+- prefers-reduced-motion disables animations and transitions
+- no changes to financial calculations, data providers, routing, or page logic
+
+Note:
+- This update intentionally uses subtle UI interaction effects, not fake live market ticks.
+- Plotly chart entrance animation is not forced globally because Streamlit reruns and embedded Plotly redraws can cause flicker.

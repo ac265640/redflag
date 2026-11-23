@@ -1,0 +1,19 @@
+RED FLAG INTELLIGENCE — SEARCH + TAB SPACING PATCH
+
+Files to replace in the existing project:
+1. pages/0_Welcome.py
+2. pages/2_Company_Overview.py
+3. pages/3_Forensic_Red_Flags.py
+
+Steps:
+1. Stop Streamlit with Ctrl+C.
+2. Back up the three existing files.
+3. Extract this ZIP into the project root (the folder containing app.py).
+4. Replace the three files when prompted.
+5. Restart with WINDOWS_RUN_DASHBOARD.bat or .venv\Scripts\python.exe -m streamlit run app.py.
+
+Welcome now uses one searchable native company dropdown. Type a name, NSE symbol, BSE code or canonical ticker; matching company options appear in the dropdown. The selected company is opened with Analyze Company. Direct ticker entry remains supported.
+
+The Forensic Red Flags tabs now have spacing, distinct button styling and responsive wrapping. Company Overview segmented navigation receives the same spacing treatment.
+
+This is a focused UI patch. It does not change data providers or API credentials. Live exchange search must still use the local NSE/BSE listing cache.

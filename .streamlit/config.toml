@@ -1,0 +1,12 @@
+[theme]
+base = "light"
+primaryColor = "#16856B"
+backgroundColor = "#F4F6F3"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#202A25"
+font = "sans serif"
+chartCategoricalColors = ["#16856B", "#5B9A7C", "#8FB7A0", "#D5A34A", "#C45A5F"]
+chartSequentialColors = ["#EDF6F0", "#16856B"]
+
+[client]
+showErrorDetails = "full"

@@ -1,0 +1,23 @@
+RED FLAG INTELLIGENCE — UI READABILITY HOTFIX
+
+This update addresses the visual regressions visible in the user's screenshots:
+- Forces Streamlit sidebar navigation labels to remain visible and readable.
+- Applies theme-aware colors to BaseWeb select menus, popovers and company search suggestions.
+- Fixes low-contrast Welcome-page market news headlines and publisher metadata.
+- Applies theme-aware chart labels and form text.
+- Adds responsive content gutters and prevents news text overflow.
+
+No data source, financial model, company search logic, research module, or page routing was intentionally changed.
+
+INSTALL
+1. Stop Streamlit (Ctrl+C).
+2. Extract this ZIP into a NEW folder, or replace the existing project folder after backing it up.
+3. Preserve your .streamlit/secrets.toml and local environment settings.
+4. Start the app using the existing Windows launcher or:
+   python -m streamlit run app.py
+5. Hard-refresh the browser (Ctrl+F5).
+
+VALIDATION
+- Python compilation: passed for app.py, shared CSS and Welcome page.
+- Existing automated tests: 30 passed; 10 subtests passed.
+- Live browser rendering still needs confirmation in the user's Windows environment.

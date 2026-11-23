@@ -1,0 +1,58 @@
+RED FLAG INTELLIGENCE — LIGHT THEME READABILITY FIX v3
+
+Purpose
+-------
+This patch corrects the mixed-theme rendering visible in the supplied screenshots:
+- Sidebar is now LIGHT (white) with dark readable navigation labels.
+- Market News headlines use dark green readable links on white.
+- Annual Report and Corporate Regulatory hero/panel cards use light surfaces.
+- Forensic cards, badges, tabs and labels use light-theme colours.
+- Plotly chart text and Company Overview chart labels use light/neutral colours.
+- The Streamlit categorical chart palette uses institutional emerald/neutral tones.
+- The final theme layer is injected AFTER page-local styles so embedded custom CSS
+  cannot silently restore the old navy panels.
+
+This is a focused replacement patch. It does NOT replace company data, secrets,
+caches, financial models, source connectors, or the virtual environment.
+
+INSTALL
+-------
+1. Stop Streamlit with Ctrl+C.
+2. Make a backup of the current project folder.
+3. Extract this ZIP into the EXISTING project root (the folder containing app.py).
+4. Choose Replace for the included files. Preserve .streamlit/secrets.toml.
+5. Restart from the project root:
+   .venv\Scripts\python.exe -m streamlit run app.py
+6. Hard refresh the browser with Ctrl+F5.
+
+Included replacements
+---------------------
+utils/custom_css.py
+.streamlit/config.toml
+pages/0_Welcome.py
+pages/1_Home_Dashboard.py
+pages/2_Company_Overview.py
+pages/3_Forensic_Red_Flags.py
+pages/4_Governance_DeepDive.py
+pages/5_ESG_Scorecard.py
+pages/6_Credit_Rating.py
+pages/7_Portfolio_Risk.py
+pages/8_Compare_Companies.py
+pages/9_Yahoo_Finance_Data.py
+pages/10_Annual_Report_Intelligence.py
+pages/11_Management_Intelligence.py
+pages/12_Corporate_Regulatory_Intelligence.py
+pages/13_Final_Investment_Summary.py
+
+VALIDATION
+----------
+- All 86 project Python files passed Python syntax compilation.
+- Existing test suite: 30 passed, 10 subtests passed.
+- ZIP integrity checked after packaging.
+
+NOTE
+----
+The app was not launched in the user's Windows browser here. After restart, inspect
+Welcome, Annual Report, Corporate Regulatory, Forensic Red Flags and Company Overview.
+If any specific custom HTML block remains dark, share its screenshot and URL; it can be
+targeted without changing the data/research pipeline.
